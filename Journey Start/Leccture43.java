@@ -1,31 +1,56 @@
-package javaCourse;
+package javacourse;
+import java.util.Scanner;
+import java.util.Random;
+ class Game{
+     int number;
+     int noOfGusses;
+     int usserInput;
+     int noOfGuess;
+      Game(){
+        Random rand=new Random();
+        this.number=rand.nextInt(100);
+     }
+     public void takeUserInput(){
+         System.out.println("enter the number:");
+         Scanner sc=new Scanner(System.in);
+         usserInput=sc.nextInt();
+     }
+     public boolean isNumberCorrect(){
+          noOfGuess++;
+         if (usserInput==number){
+            System.out.format("Yes you guessed it right, it was %d\nYou guessed it in %d attempts", number, noOfGuess);
+             return true;
+         }
+         else if(usserInput<number){
+             System.out.println("Too low...");
+         }
+         else if(usserInput>number){
+             System.out.println("Too high...");
+         }
+         return false;
+     }
 
-public class Lecture31 {
-    static int logic(int x, int y){
-        int z;
-        if(x>y){
-            z = x+y;
-        }
-        else {
-            z = (x +y) * 5;
-        }
-        x = 566;
-        return z;
-    }
-    public static void main(String[] args){
-                int a = 5;
-                int b = 7;
-                int c;
-                // Method invocation using Object creation
-                //Lecture31 obj = new Lecture31();
-                //c = obj.logic(a, b);
-                c = logic(a, b);
-                System.out.println(a + " "+ b);
-                int a1 = 2;
-                int b1 = 1;
-                int c1;
-                c1 = logic(a1, b1);
-                System.out.println(c);
-                System.out.println(c1);
-            }
-      }
+     public int getNoOfGusses() {
+         return noOfGusses;
+     }
+
+     public void setNoOfGusses(int noOfGusses) {
+         this.noOfGusses = noOfGusses;
+     }
+
+}
+public class Lecture43{
+
+     public static void main(String[] args){
+     boolean correct=false;
+     int count=0;
+     Game g=new Game();
+     while(!correct)
+     {
+         g.takeUserInput();
+         correct=g.isNumberCorrect();
+
+     }
+
+     }
+}
